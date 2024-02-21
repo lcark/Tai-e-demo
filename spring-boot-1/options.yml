@@ -1,0 +1,24 @@
+optionsFile: null
+printHelp: false
+classPath: []
+appClassPath:
+- ../../java-sec-code/target/classes
+mainClass:
+inputClasses: []
+javaVersion: 8
+prependJVM: false
+allowPhantom: true
+worldBuilderClass: pascal.taie.frontend.soot.SootWorldBuilder
+outputDir: output
+preBuildIR: false
+worldCacheMode: true
+scope: REACHABLE
+nativeModel: true
+planFile: null
+analyses:
+#  ir-dumper: ;
+  pta: cs:ci;plugins:[pascal.taie.analysis.pta.plugin.taint.SpringBootHandler];implicit-entries:true;distinguish-string-constants:null;reflection-inference:solar;merge-string-objects:false;merge-string-builders:false;merge-exception-objects:false;taint-config:taint-config.yml;
+onlyGenPlan: false
+keepResult:
+- $KEEP-ALL
+

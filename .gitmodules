@@ -1,0 +1,3 @@
+[submodule "spring-boot-1/java-benchmarks"]
+	path = spring-boot-1/java-benchmarks
+	url = https://github.com/pascal-lab/java-benchmarks
