@@ -28,22 +28,17 @@ public class SpringBootHandler implements Plugin {
 
     @Override
     public void onStart() {
-        List<JClass> list = this.solver.getHierarchy().allClasses().toList();
+        //add all hsd mapping annotation methods to entrypoint
+        List<JClass> list = solver.getHierarchy().applicationClasses().toList();
         for (JClass jClass : list) {
-            boolean flag = false;
-            List<Annotation> annotations = jClass.getAnnotations().stream().toList();
-            for (Annotation a : annotations) {
-                if (a.getType().equals("org.springframework.web.bind.annotation.RestController") || a.getType().equals("org.springframework.stereotype.Controller")) {
-                    flag = true;
-                    break;
-                }
-            }
-            if (flag) {
-                List<JMethod> declaredMethods = jClass.getDeclaredMethods().stream().toList();
-                for (JMethod jMethod:declaredMethods){
+            jClass.getDeclaredMethods().forEach(jMethod->{
+                if (!jMethod.getAnnotations().stream().filter(
+                        annotation -> annotation.getType().matches("org.springframework.web.bind.annotation.\\w+Mapping")
+                ).toList().isEmpty()) {
                     solver.addEntryPoint(new EntryPoint(jMethod, EmptyParamProvider.get()));
                 }
-            }
+            });
+
 
         }
     }
