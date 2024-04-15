@@ -1,0 +1,25 @@
+optionsFile: null
+printHelp: false
+classPath: []
+appClassPath:
+mainClass:
+inputClasses: []
+javaVersion: 8
+prependJVM: false
+allowPhantom: true
+worldBuilderClass: pascal.taie.frontend.soot.SootWorldBuilder
+outputDir: output
+preBuildIR: false
+worldCacheMode: true
+scope: REACHABLE
+nativeModel: true
+planFile: null
+analyses:
+#  ir-dumper: ;
+  pta: cs:1-obj;implicit-entries:false;taint-config:config/common/taint-config.yml;
+  extractApi: ;
+#  testmethodanalysis: ;
+#  process-result: analyses:[ir-dumper];
+onlyGenPlan: false
+keepResult:
+- $KEEP-ALL
